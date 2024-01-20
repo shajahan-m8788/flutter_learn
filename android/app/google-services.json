@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "763894004214",
+    "project_id": "fir-learn-93ccc",
+    "storage_bucket": "fir-learn-93ccc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763894004214:android:a024cfe18e85d26d22afd7",
+        "android_client_info": {
+          "package_name": "com.example.flutter_learn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmkQqB2I-mDP-dmn4o377JA2A4Uu22zP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
