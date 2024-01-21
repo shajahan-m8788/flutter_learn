@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/components/custom_scaffold.dart';
+import 'package:flutter_learn/widgets/custom_scaffold.dart';
 
 class HomeScreen extends StatelessWidget {
   final String? title;

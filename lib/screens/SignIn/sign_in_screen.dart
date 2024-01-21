@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/components/custom_scaffold.dart';
-import 'package:flutter_learn/components/custom_text_field.dart';
-import 'package:flutter_learn/constants/constatnt.dart';
+import 'package:flutter_learn/widgets/custom_scaffold.dart';
+import 'package:flutter_learn/widgets/custom_text_field.dart';
+import 'package:flutter_learn/constants/constants.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
