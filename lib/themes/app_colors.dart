@@ -6,4 +6,5 @@ class AppColors {
   static const Color errorColor = Color(0xffed5c5f);
   static const Color defaultBorderColor = Color(0xfff1ebf2);
   static const Color black = Color(0xff000000);
+  static const Color white = Color(0xffffffff);
 }

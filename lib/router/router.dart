@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/router/routes.dart';
-import 'package:flutter_learn/screens/Home/home_screen.dart';
-import 'package:flutter_learn/screens/SignIn/sign_in_screen.dart';
+import 'package:flutter_learn/screens/home/home_screen.dart';
+import 'package:flutter_learn/screens/signIn/sign_in_screen.dart';
+import 'package:flutter_learn/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
   final GoRouter router = GoRouter(routes: [
     GoRoute(
       path: '/',
-      name: AppRoutes.sigIn,
+      name: AppRoutes.splash,
       builder: (context, state) {
-        return const SignInScreen();
+        return const SplashScreen();
       },
     ),
     GoRoute(
@@ -21,6 +22,13 @@ class AppRouter {
         return HomeScreen(
           title: query,
         );
+      },
+    ),
+    GoRoute(
+      path: '/sign-in',
+      name: AppRoutes.sigIn,
+      builder: (context, state) {
+        return const SignInScreen();
       },
     )
   ]);

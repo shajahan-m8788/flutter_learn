@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/constants/constatnt.dart';
+import 'package:flutter_learn/constants/constants.dart';
 import 'package:flutter_learn/themes/app_colors.dart';
 import 'package:flutter_learn/themes/app_colors_swatch.dart';
 
