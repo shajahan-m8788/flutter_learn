@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final bool secure;
   final Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   const CustomTextField(
       {super.key,
@@ -14,7 +15,8 @@ class CustomTextField extends StatelessWidget {
       this.label,
       this.hintText,
       this.secure = false,
-      this.onChanged});
+      this.onChanged,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +36,13 @@ class CustomTextField extends StatelessWidget {
                       color: AppColors.black),
                 ))
             : const SizedBox(),
-        TextField(
+        TextFormField(
           obscureText: secure,
           decoration: InputDecoration(hintText: hintText),
           controller: controller,
           onChanged: onChanged,
+          validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
       ],
     );

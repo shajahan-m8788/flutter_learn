@@ -15,6 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const CustomScaffold(
+      statusbarColor: AppColors.primaryColor,
       bgColor: AppColors.primaryColor,
       body: Center(
         child: Text(

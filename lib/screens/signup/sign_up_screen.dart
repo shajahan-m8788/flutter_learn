@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/router/routes.dart';
+import 'package:flutter_learn/service/utilities.dart';
 import 'package:flutter_learn/themes/app_colors.dart';
 import 'package:flutter_learn/widgets/custom_button.dart';
 import 'package:flutter_learn/widgets/custom_link_button.dart';
@@ -23,11 +24,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController confirmPassword = TextEditingController();
   bool isDisabled = true;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: CustomScaffold(
-          body: Column(
+    return CustomScaffold(
+        body: Form(
+      key: _formKey,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
@@ -45,6 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             controller: emailController,
             label: "Email",
             onChanged: (_) => {handleDisabled()},
+            validator: (e) => handleError(e),
           ),
           AppConstants.textFieldGap,
           CustomTextField(
@@ -64,32 +69,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
           CustomButton(
             label: "Sign Up",
             isDisabled: isDisabled,
-            onPressed: () async {
-              try {
-                var authenticate = await _auth.createUserWithEmailAndPassword(
-                    email: emailController.value.text,
-                    password: confirmPassword.value.text);
-                if (context.mounted) {
-                  showToast(
-                      context: context,
-                      content: Text(authenticate.toString(),
-                          style: const TextStyle(color: AppColors.black)));
-                }
-              } catch (er) {
-                if (context.mounted) {
-                  showToast(
-                      context: context,
-                      content: Text(er.toString(),
-                          style: const TextStyle(color: AppColors.black)));
-                }
-              }
-            },
+            onPressed: () => signUp(),
           ),
           AppConstants.textFieldGap,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Already have a account "),
+              const Text(
+                "Already have a account ",
+                style: font_16_500Black,
+              ),
               CustomLinkButton(
                 buttonText: 'Sign In',
                 onTap: () {
@@ -99,8 +88,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
           )
         ],
-      )),
-    );
+      ),
+    ));
   }
 
   @override
@@ -112,11 +101,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   handleDisabled() {
     setState(() {
-      isDisabled = emailController.value.text.isEmpty ||
+      isDisabled = emailReg.hasMatch(emailController.value.text) == false ||
               passwordController.value.text.isEmpty ||
               confirmPassword.value.text.isEmpty
           ? true
           : false;
+    });
+  }
+
+  handleError(String? e) {
+    if (emailReg.hasMatch(emailController.value.text)) {
+      return null;
+    } else {
+      return 'Please enter valid email address';
+    }
+  }
+
+  signUp() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (_formKey.currentState!.validate()) {
+        try {
+          var authenticate = await _auth.createUserWithEmailAndPassword(
+              email: emailController.value.text,
+              password: confirmPassword.value.text);
+          if (context.mounted) {
+            showToast(
+                context: context,
+                content: const Text("User created successfully",
+                    style: TextStyle(color: AppColors.black)));
+            context.goNamed(AppRoutes.homeScreen,
+                pathParameters: {'title': "shajahan"});
+          }
+        } catch (er) {
+          if (context.mounted) {
+            showToast(
+                context: context,
+                snackType: SnackType.error,
+                content: Text(er.toString(),
+                    style: const TextStyle(color: AppColors.black)));
+          }
+        }
+      }
     });
   }
 }

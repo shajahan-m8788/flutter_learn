@@ -34,7 +34,7 @@ class _CustomButtonState extends State<CustomButton> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextButton(
-            onPressed: widget.isDisabled == false ? onPress() : null,
+            onPressed: widget.isDisabled == false ? onPress : null,
             style: TextButton.styleFrom(
                 backgroundColor: !widget.isDisabled
                     ? AppColors.primaryColor

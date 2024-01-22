@@ -33,7 +33,7 @@ class AppRouter {
       },
     ),
     GoRoute(
-      path: '/sign-ip',
+      path: '/sign-Up',
       name: AppRoutes.signUp,
       builder: (context, state) {
         return const SignUpScreen();

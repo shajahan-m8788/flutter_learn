@@ -9,4 +9,5 @@ class AppColors {
   static const Color white = Color(0xffffffff);
   static const Color linkColor = Color(0xff1b75d0);
   static const Color headingColor = Color(0xff2b1f2b);
+  static const Color warningColor = Color(0xffFFCC00);
 }
