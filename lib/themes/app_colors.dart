@@ -7,4 +7,6 @@ class AppColors {
   static const Color defaultBorderColor = Color(0xfff1ebf2);
   static const Color black = Color(0xff000000);
   static const Color white = Color(0xffffffff);
+  static const Color linkColor = Color(0xff1b75d0);
+  static const Color headingColor = Color(0xff2b1f2b);
 }

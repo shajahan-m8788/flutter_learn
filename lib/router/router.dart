@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/router/routes.dart';
 import 'package:flutter_learn/screens/home/home_screen.dart';
 import 'package:flutter_learn/screens/signIn/sign_in_screen.dart';
+import 'package:flutter_learn/screens/signup/sign_up_screen.dart';
 import 'package:flutter_learn/screens/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,6 +30,13 @@ class AppRouter {
       name: AppRoutes.sigIn,
       builder: (context, state) {
         return const SignInScreen();
+      },
+    ),
+    GoRoute(
+      path: '/sign-ip',
+      name: AppRoutes.signUp,
+      builder: (context, state) {
+        return const SignUpScreen();
       },
     )
   ]);

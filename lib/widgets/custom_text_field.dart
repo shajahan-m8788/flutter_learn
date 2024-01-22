@@ -5,9 +5,16 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final String? hintText;
+  final bool secure;
+  final Function(String)? onChanged;
 
   const CustomTextField(
-      {super.key, this.controller, this.label, this.hintText});
+      {super.key,
+      this.controller,
+      this.label,
+      this.hintText,
+      this.secure = false,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +35,10 @@ class CustomTextField extends StatelessWidget {
                 ))
             : const SizedBox(),
         TextField(
+          obscureText: secure,
           decoration: InputDecoration(hintText: hintText),
           controller: controller,
+          onChanged: onChanged,
         ),
       ],
     );
