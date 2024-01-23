@@ -4,11 +4,13 @@ import 'package:flutter_learn/provider/sign_in_provider.dart';
 import 'package:flutter_learn/router/router.dart';
 import 'package:flutter_learn/themes/app_theme.dart';
 import 'package:provider/provider.dart';
-// Import the generated file
 import 'firebase_options.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

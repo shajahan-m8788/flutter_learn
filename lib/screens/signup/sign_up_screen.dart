@@ -20,7 +20,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
   bool isDisabled = true;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -52,12 +51,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             validator: (e) => handleError(e),
           ),
           AppConstants.textFieldGap,
-          CustomTextField(
-            controller: passwordController,
-            label: "Password",
-            secure: true,
-            onChanged: (_) => {handleDisabled()},
-          ),
           AppConstants.textFieldGap,
           CustomTextField(
             controller: confirmPassword,
@@ -96,13 +89,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void dispose() {
     super.dispose();
     emailController.dispose();
-    passwordController.dispose();
+    confirmPassword.dispose();
   }
 
   handleDisabled() {
     setState(() {
       isDisabled = emailReg.hasMatch(emailController.value.text) == false ||
-              passwordController.value.text.isEmpty ||
               confirmPassword.value.text.isEmpty
           ? true
           : false;
@@ -121,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (_formKey.currentState!.validate()) {
         try {
-          var authenticate = await _auth.createUserWithEmailAndPassword(
+          await _auth.createUserWithEmailAndPassword(
               email: emailController.value.text,
               password: confirmPassword.value.text);
           if (context.mounted) {
