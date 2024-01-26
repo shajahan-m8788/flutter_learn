@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/router/routes.dart';
+import 'package:flutter_learn/screens/about/about_screen.dart';
 import 'package:flutter_learn/screens/error/error_screen.dart';
 import 'package:flutter_learn/screens/home/home_screen.dart';
 import 'package:flutter_learn/screens/signIn/sign_in_screen.dart';
@@ -39,6 +40,13 @@ class AppRouter {
         name: AppRoutes.signUp,
         builder: (context, state) {
           return const SignUpScreen();
+        },
+      ),
+      GoRoute(
+        path: '/about',
+        name: AppRoutes.about,
+        builder: (context, state) {
+          return const AboutScreen();
         },
       ),
     ],
